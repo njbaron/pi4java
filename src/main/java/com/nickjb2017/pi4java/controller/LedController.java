@@ -1,4 +1,4 @@
-package com.nickjb2017.controller;
+package com.nickjb2017.pi4java.controller;
 
 import com.pi4j.io.gpio.*;
 import org.springframework.web.bind.annotation.RequestMapping;
