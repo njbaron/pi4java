@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LedController {
 
     private GpioPinDigitalOutput pin;
+    private boolean light = false;
 
     @RequestMapping("/")
     public String greeting() {
@@ -21,8 +22,20 @@ public class LedController {
             pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_07, "MyLED", PinState.LOW);
         }
 
-        pin.toggle();
-        return "OK";
+        String retString;
+
+        if(light) {
+            pin.high();
+            light = false;
+            retString = "LIGHT ON";
+        }
+        else {
+            pin.low();
+            light = true;
+            retString = "LIGHT OFF";
+        }
+
+        return retString;
     }
 
 }
